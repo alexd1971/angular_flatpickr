@@ -1,22 +1,101 @@
-# angular_flatpickr
+# AngularDart flatpickr
 
-A library for Dart developers.
-
-Created from templates made available by Stagehand under a BSD-style
-[license](https://github.com/dart-lang/stagehand/blob/master/LICENSE).
+This is an angulardart wrapper of JS [flatpickr][flatpickr] -- simple but powerful date/time picker
 
 ## Usage
 
 A simple usage example:
 
-    import 'package:angular_flatpickr/angular_flatpickr.dart';
+```dart
+import 'package:angular/angular.dart';
+import 'package:angular_flatpickr/angular_flatpickr.dart';
 
-    main() {
-      var awesome = new Awesome();
+@Component(
+  selector: 'my-component',
+  template: '''
+    <input  type=text
+            flatpickr
+            fpLocale="ru"
+            [fpDefaultDate]="defaultDate"
+            fpDateFormat="d.m.Y H:i:S"
+            [fpDisable]="disable"
+            fpEnableTime=true
+            fpTime24hr=true
+            (fpOnChange)="onChange($event)"
+            (fpOnOpen)="onOpen()"
+            (fpOnClose)="onClose()"
+            (fpOnReady)="onReady()"
+            #fp="FlatPickr">
+
+    <button (click)="onButtonClick()">Click me</button>
+>
+  '''
+)
+class MyComponent {
+  /// Initial date and time
+  DateTime defaultDate = new DateTime(2018, DateTime.FEBRUARY, 1) ;
+
+  /// Max date available
+  DateTime maxDate = new DateTime(2018,DateTime.FEBRUARY, 20);
+
+  /// List of disabled dates
+  ///
+  /// Dates can be set in different ways:
+  /// - DateTime object
+  /// - date string
+  /// - Map setting date range
+  /// - function getting DateTime object as its arguments and returning bool result
+  List disable = [
+
+    new DateTime(2018, DateTime.FEBRUARY, 28),
+
+    '2018-02 10',
+
+    (DateTime date) {
+      return date.day == 15;
+    },
+
+    {
+      'from': '2018-02-20',
+      'to': '2018-02-25'
     }
+  ];
+  
+  /// This function executes when date/time picker changes its value
+  void onChange(List<DateTime> dates) {
+    print(dates);
+  }
+  
+  /// This function executes when calendar opens
+  void onOpen() {
+    print("Open");
+  }
+  
+  /// This function executes when calendar closes
+  void onClose() {
+    print("Close");
+  }
+  
+  /// This function execute after flatpickr initialization
+  void onReady() {
+    print("Ready");
+  }
+  
+  // It is possible to get controller instance...
+  @ViewChild('fp')
+  FlatPickr fp;
+  
+  void onButtonClick() {
+    // ... and use it later
+    print(fp.selectedDates);
+  }
+}
+```
+There are more options and methods to control flatpickr. You can get additional information in source
 
 ## Features and bugs
 
 Please file feature requests and bugs at the [issue tracker][tracker].
 
-[tracker]: http://example.com/issues/replaceme
+[tracker]: https://github.com/alexd1971/angular_flatpickr/issues
+[flatpickr]: https://chmln.github.io/flatpickr/
