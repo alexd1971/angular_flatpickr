@@ -28,7 +28,6 @@ import 'package:angular_flatpickr/angular_flatpickr.dart';
             #fp="FlatPickr">
 
     <button (click)="onButtonClick()">Click me</button>
->
   '''
 )
 class MyComponent {
