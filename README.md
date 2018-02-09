@@ -15,16 +15,16 @@ import 'package:angular_flatpickr/angular_flatpickr.dart';
   template: '''
     <input  type=text
             flatpickr
-            fpLocale="ru"
-            [fpDefaultDate]="defaultDate"
-            fpDateFormat="d.m.Y H:i:S"
-            [fpDisable]="disable"
-            fpEnableTime=true
-            fpTime24hr=true
-            (fpOnChange)="onChange($event)"
-            (fpOnOpen)="onOpen()"
-            (fpOnClose)="onClose()"
-            (fpOnReady)="onReady()"
+            fp-locale="ru"
+            [fp-default-date]="defaultDate"
+            fp-date-format="d.m.Y H:i:S"
+            [fp-disable]="disable"
+            fp-enable-time=true
+            fp-time24hr=true
+            (fp-onchange)="onChange($event)"
+            (fp-onopen)="onOpen()"
+            (fp-onclose)="onClose()"
+            (fp-onready)="onReady()"
             #fp="FlatPickr">
 
     <button (click)="onButtonClick()">Click me</button>

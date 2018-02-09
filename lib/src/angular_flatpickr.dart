@@ -101,9 +101,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Exactly the same as [dateFormat], but for the [altInput] field
   ///
   /// Default: `"F j, Y"`  
-  String get fpAltFormat => _options.altFormat;
-  @Input()
-  set fpAltFormat(String v) {
+  String get altFormat => _options.altFormat;
+  @Input('fp-alt-format')
+  set altFormat(String v) {
     _options.altFormat = v;
     if(_fp == null) {
       _initialConfig.altFormat = v;
@@ -116,9 +116,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// totally different to the server.
   ///
   /// Default: `false`
-  bool get fpAltInput => _options.altInput;
-  @Input()
-  set fpAltInput(bool v) {
+  bool get altInput => _options.altInput;
+  @Input('fp-alt-input')
+  set altInput(bool v) {
     _options.altInput = v;
     if(_fp == null) {
       _initialConfig.altInput = v;
@@ -133,9 +133,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Note that [altInput] already inherits classes from the original input.
   ///
   /// Default: `""`
-  String get fpAltInputClass => _options.altInputClass;
-  @Input()
-  set fpAltInputClass(String v) {
+  String get altInputClass => _options.altInputClass;
+  @Input('fp-alt-input-class')
+  set altInputClass(String v) {
     _options.altInputClass = v;
     if(_fp == null) {
       _initialConfig.altInputClass = v;
@@ -149,9 +149,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// By default, direct entry is disabled.
   ///
   /// Default: `false`
-  bool get fpAllowInput => _options.allowInput;
-  @Input()
-  set fpAllowInput(bool v) {
+  bool get allowInput => _options.allowInput;
+  @Input('fp-allow-input')
+  set allowInput(bool v) {
     _options.allowInput = v;
     if(_fp == null) {
       _initialConfig.allowInput = v;
@@ -163,9 +163,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Instead of body, appends the calendar to the specified node.
   ///
   /// Default: `null`
-  HtmlElement get fpAppendTo => _options.appendTo;
-  @Input()
-  set fpAppendTo(HtmlElement v) {
+  HtmlElement get appendTo => _options.appendTo;
+  @Input('fp-append-to')
+  set appendTo(HtmlElement v) {
     _options.appendTo = v;
     if(_fp == null) {
       _initialConfig.appendTo = v;
@@ -180,9 +180,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// a value that will make sense if a screen reader reads it out loud.
   ///
   /// Default: `"F j, Y"`
-  String get fpAriaDateFormat => _options.ariaDateFormat;
-  @Input()
-  set fpAriaDateFormat(String v) {
+  String get ariaDateFormat => _options.ariaDateFormat;
+  @Input('fp-aria-date-format')
+  set ariaDateFormat(String v) {
     _options.ariaDateFormat = v;
     if(_fp == null) {
       _initialConfig.ariaDateFormat = v;
@@ -196,9 +196,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// You could disable this if you wish to open the calendar manually with open()
   ///
   /// Default: `true`
-  bool get fpClickOpens => _options.clickOpens;
-  @Input()
-  set fpClickOpens(bool v) {
+  bool get clickOpens => _options.clickOpens;
+  @Input('fp-click-opens')
+  set clickOpens(bool v) {
     _options.clickOpens = v;
     if(_fp == null) {
       _initialConfig.clickOpens = v;
@@ -263,9 +263,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   ///     | K | AM/PM                                                | AM or PM                 |
   ///
   /// Default: `"Y-m-d"`
-  String get fpDateFormat => _options.dateFormat;
-  @Input()
-  set fpDateFormat(String v) {
+  String get dateFormat => _options.dateFormat;
+  @Input('fp-date-format')
+  set dateFormat(String v) {
     _options.dateFormat = v;
     if(_fp == null) {
       _initialConfig.dateFormat = v;
@@ -281,9 +281,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Otherwise, you can supply a single [DateTime] object or a date string.
   ///
   /// Default: `null`
-  dynamic get fpDefaultDate => _options.defaultDate;
-  @Input()
-  set fpDefaultDate(dynamic v) {
+  dynamic get defaultDate => _options.defaultDate;
+  @Input('fp-default-date')
+  set defaultDate(dynamic v) {
     _options.defaultDate = v;
     var jsValue;
     if(v is List<DateTime>) {
@@ -306,9 +306,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Initial value of the hour element.
   ///
   /// Default: `12`
-  int get fpDefaultHour => _options.defaultHour;
-  @Input()
-  set fpDefaultHour(int v) {
+  int get defaultHour => _options.defaultHour;
+  @Input('fp-default-hour')
+  set defaultHour(int v) {
     _options.defaultHour = v;
     if(_fp == null) {
       _initialConfig.defaultHour = v;
@@ -320,9 +320,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Initial value of the minute element.
   ///
   /// Default: `0`
-  int get fpDefaultMinute => _options.defaultMinute;
-  @Input()
-  set fpDefaultMinute(int v) {
+  int get defaultMinute => _options.defaultMinute;
+  @Input('fp-default-minute')
+  set defaultMinute(int v) {
     _options.defaultMinute = v;
     if(_fp == null) {
       _initialConfig.defaultMinute = v;
@@ -362,8 +362,8 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   ///     ]
   ///
   /// Default: `[]`  List get disable => _options.disable;
-  @Input()
-  set fpDisable(List v) {
+  @Input('fp-disable')
+  set disable(List v) {
     _options.disable = v;
     var jsValue = v.map((item) {
       if(item is DateTime) {
@@ -394,9 +394,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// options (e.g. disable) are used.
   ///
   /// Default: `false`
-  bool get fpDisableMobile => _options.disableMobile;
-  @Input()
-  set fpDisableMobile(bool v) {
+  bool get disableMobile => _options.disableMobile;
+  @Input('fp-disable-mobile')
+  set disableMobile(bool v) {
     _options.disableMobile = v;
     if(_fp == null) {
       _initialConfig.disableMobile = v;
@@ -412,8 +412,7 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// but reversed.
   ///
   /// Default: `[]`
-  List get fpEnable => _options.enable;
-  @Input()
+  @Input('fp-enable')
   set enable(List v) {
     _options.enable = v;
     var jsValue = v.map((item) {
@@ -442,9 +441,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Enables time picker
   ///
   /// Default: `false`
-  bool get fpEnableTime => _options.enableTime;
-  @Input()
-  set fpEnableTime(bool v) {
+  bool get enableTime => _options.enableTime;
+  @Input('fp-enable-time')
+  set enableTime(bool v) {
     _options.enableTime = v;
     if(_fp == null) {
       _initialConfig.enableTime = v;
@@ -456,9 +455,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Enables seconds in the time picker.
   ///
   /// Default: `false`
-  bool get fpEnableSeconds => _options.enableSeconds;
-  @Input()
-  set fpEnableSeconds(bool v) {
+  bool get enableSeconds => _options.enableSeconds;
+  @Input('fp-enable-seconds')
+  set enableSeconds(bool v) {
     _options.enableSeconds;
     if(_fp == null) {
       _initialConfig.enableSeconds = v;
@@ -470,9 +469,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Adjusts the step for the hour input (incl. scrolling)
   ///
   /// Default: `1`
-  int get fpHourIncrement => _options.hourIncrement;
-  @Input()
-  set fpHourIncrement(int v) {
+  int get hourIncrement => _options.hourIncrement;
+  @Input('fp-hour-increment')
+  set hourIncrement(int v) {
     _options.hourIncrement = v;
     if(_fp == null) {
       _initialConfig.hourIncrement = v;
@@ -484,9 +483,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Displays the calendar inline
   ///
   /// Default: `false`
-  bool get fpInline => _options.inline;
-  @Input()
-  set fpInline(bool v) {
+  bool get inline => _options.inline;
+  @Input('fp-inline')
+  set inline(bool v) {
     _options.inline = v;
     if(_fp == null) {
       _initialConfig.inline = v;
@@ -501,9 +500,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// More info: https://chmln.github.io/flatpickr/localization/
   /// 
   /// Default: `en`
-  String get fpLocale => _options.locale;
-  @Input()
-  set fpLocale(String v) {
+  String get locale => _options.locale;
+  @Input('fp-locale')
+  set locale(String v) {
     _options.locale = v;
     if(_fp == null) {
       _initialConfig.locale = v;
@@ -517,9 +516,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// The value can be a [DateTime] object or a [String]
   /// 
   /// Default: `null`
-  dynamic get fpMaxDate => _options.maxDate;
-  @Input()
-  set fpMaxDate(dynamic v) {
+  dynamic get maxDate => _options.maxDate;
+  @Input('fp-max-date')
+  set maxDate(dynamic v) {
     _options.maxDate = v;
     var jsValue;
     if (v is DateTime) {
@@ -541,9 +540,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// The value can be a [DateTime] object or a [String]
   /// 
   /// Default: `null`
-  dynamic get fpMinDate => _options.minDate;
-  @Input()
-  set fpMinDate(dynamic v) {
+  dynamic get minDate => _options.minDate;
+  @Input('fp-min-date')
+  set minDate(dynamic v) {
     _options.minDate = v;
     var jsValue;
     if (v is DateTime) {
@@ -563,9 +562,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Adjusts the step for the minute input (incl. scrolling)
   ///
   /// Default: `5`
-  int get fpMinuteIncrement => _options.minuteIncrement;
-  @Input()
-  set fpMinuteIncrement(int v) {
+  int get minuteIncrement => _options.minuteIncrement;
+  @Input('fp-minute-increment')
+  set minuteIncrement(int v) {
     _options.minuteIncrement = v;
     if(_fp == null) {
       _initialConfig.minuteIncrement = v;
@@ -577,9 +576,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// "single", "multiple", or "range"
   ///
   /// Default: "single"
-  String get fpMode => _options.mode;
-  @Input()
-  set fpMode(String v) {
+  String get mode => _options.mode;
+  @Input('fp-mode')
+  set mode(String v) {
     _options.mode = v;
     if(_fp == null) {
       _initialConfig.mode = v;
@@ -591,9 +590,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// HTML for the arrow icon, used to switch months.
   ///
   /// Default: `>`
-  String get fpNextArrow => _options.nextArrow;
-  @Input()
-  set fpNextArrow(String v) {
+  String get nextArrow => _options.nextArrow;
+  @Input('fp-next-arrow')
+  set nextArrow(String v) {
     _options.nextArrow = v;
     if(_fp == null) {
       _initialConfig.nextArrow = v;
@@ -607,9 +606,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Use it along with enableTime to create a time picker.
   ///
   /// Default: `false`
-  bool get fpNoCalendar => _options.noCalendar;
-  @Input()
-  set fpNoCalendar(bool v) {
+  bool get noCalendar => _options.noCalendar;
+  @Input('fp-no-calendar')
+  set noCalendar(bool v) {
     _options.noCalendar = v;
     if(_fp == null) {
       _initialConfig.noCalendar = v;
@@ -621,33 +620,33 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   final _onChange = new StreamController<List<DateTime>>();
   
   /// Change selected dates events
-  @Output()
-  Stream<List<DateTime>> get fpOnChange => _onChange.stream;
+  @Output('fp-onchange')
+  Stream<List<DateTime>> get onChange => _onChange.stream;
 
   final _onClose = new StreamController<FlatPickr>();
   
   /// Close claendar events
-  @Output()
-  Stream<FlatPickr> get fpOnClose => _onClose.stream;
+  @Output('fp-onclose')
+  Stream<FlatPickr> get onClose => _onClose.stream;
 
   final _onOpen = new StreamController<FlatPickr>();
   
   /// Open calendar events
-  @Output()
-  Stream<FlatPickr> get fpOnOpen => _onOpen.stream;
+  @Output('fp-onopen')
+  Stream<FlatPickr> get onOpen => _onOpen.stream;
 
   final _onReady = new StreamController<FlatPickr>();
   
   /// Control ready event
-  @Output()
-  Stream<FlatPickr> get fpOnReady => _onReady.stream;
+  @Output('fp-onready')
+  Stream<FlatPickr> get onReady => _onReady.stream;
 
   /// HTML for the left arrow icon.
   ///
   /// Default: `<`
-  String get fpPrevArrow => _options.prevArrow;
-  @Input()
-  set fpPrevArrow(String v) {
+  String get prevArrow => _options.prevArrow;
+  @Input('fp-prev-arrow')
+  set prevArrow(String v) {
     _options.prevArrow = v;
     if(_fp == null) {
       _initialConfig.prevArrow = v;
@@ -659,9 +658,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Show the month using the shorthand version (ie, Sep instead of September).
   ///
   /// Default: `false`
-  bool get fpShorthandCurrentMonth => _options.shorthandCurrentMonth;
-  @Input()
-  set fpShorthandCurrentMonth(bool v) {
+  bool get shorthandCurrentMonth => _options.shorthandCurrentMonth;
+  @Input('fp-shorthand-current-month')
+  set shorthandCurrentMonth(bool v) {
     _options.shorthandCurrentMonth = v;
     if(_fp == null) {
       _initialConfig.shorthandCurrentMonth = v;
@@ -675,9 +674,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Leave `false` unless you know what you're doing.
   ///
   /// Default: `false`
-  bool get fpStatic => _options.static;
-  @Input()
-  set fpStatic(bool v) {
+  bool get static => _options.static;
+  @Input('fp-static')
+  set static(bool v) {
     _options.static = v;
     if(_fp == null) {
       _initialConfig.static = v;
@@ -689,9 +688,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Displays time picker in 24 hour mode without AM/PM selection when enabled.
   ///
   /// Default: `false`
-  bool get fpTime24hr => _options.time_24hr;
-  @Input()
-  set fpTime24hr(bool v) {
+  bool get time24hr => _options.time_24hr;
+  @Input('fp-time24hr')
+  set time24hr(bool v) {
     _options.time_24hr = v;
     if(_fp == null) {
       _initialConfig.time_24hr = v;
@@ -703,9 +702,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   /// Enables display of week numbers in calendar.
   ///
   /// Default: `false`
-  bool get fpWeekNumbers => _options.weekNumbers;
-  @Input()
-  set fpWeekNumbers(bool v) {
+  bool get weekNumbers => _options.weekNumbers;
+  @Input('fp-week-numbers')
+  set weekNumbers(bool v) {
     _options.weekNumbers = v;
     if(_fp == null) {
       _initialConfig.weekNumbers = v;
@@ -732,9 +731,9 @@ class FlatPickr implements AfterViewInit, OnDestroy{
   ///     </div>
   /// 
   /// Default: `false`
-  bool get fpWrap => _options.wrap;
-  @Input()
-  set fpWrap(bool v) {
+  bool get wrap => _options.wrap;
+  @Input('fp-wrap')
+  set wrap(bool v) {
     _options.wrap = v;
     if(_fp == null) {
       _initialConfig.wrap = v;
