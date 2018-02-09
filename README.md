@@ -25,7 +25,7 @@ import 'package:angular_flatpickr/angular_flatpickr.dart';
             (fp-onopen)="onOpen()"
             (fp-onclose)="onClose()"
             (fp-onready)="onReady()"
-            #fp="FlatPickr">
+            #fp="flatPickr">
 
     <button (click)="onButtonClick()">Click me</button>
   '''
