@@ -50,7 +50,7 @@ class _FpOptions {
 
 @Directive(
   selector: '[flatpickr]',
-  exportAs: 'FlatPickr'
+  exportAs: 'flatPickr'
 )
 class FlatPickr implements AfterViewInit, OnDestroy{
 
