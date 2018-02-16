@@ -1001,10 +1001,20 @@ class FlatpickrValueAccessor implements ControlValueAccessor {
   /// Registered onChange function
   ChangeFunction _onChange;
 
+  TouchFunction _onTouched;
+
   /// Handles Flatpickr onChange events
   @HostListener('fpOnChange', const [r'$event'])
   void fpOnChange(FlatpickrChangeEvent event) {
     _onChange(event.value);
+  }
+
+  /// Handles onBlure events
+  /// 
+  /// Calls registered onTouched handlers
+  @HostListener('blur')
+  void fpOnBlur() {
+    _onTouched();
   }
 
   /// Writes new value to Flatpickr
@@ -1021,7 +1031,9 @@ class FlatpickrValueAccessor implements ControlValueAccessor {
 
   /// Registers onTouched handler
   @override
-  registerOnTouched(TouchFunction fn) {}
+  registerOnTouched(TouchFunction fn) {
+    _onTouched = fn;
+  }
 }
 
 /// Flatpickr Event
