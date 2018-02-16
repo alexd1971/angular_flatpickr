@@ -1,3 +1,7 @@
+// Copyright (с) 2018 Aleksey Danilevskiy<alexey.danilevsky@gmail.com>
+// All rights reserved. Use of this source code is governed by a BSD-style
+// license that can be found in the LICENSE file.
+
 @JS()
 library flatpickr;
 
@@ -5,82 +9,114 @@ import 'dart:html';
 import 'dart:js';
 import 'package:js/js.dart';
 
-external FlatPickrJs flatpickr(element, FpConfigJs options);
+external FlatpickrJs flatpickr(element, FpConfigJs options);
 
 @JS('flatpickr')
 class FP {
+  /// Parses date string according to date format
+  ///
+  /// Returns JS Date object
   external static JsObject parseDate(String dateStr, String dateFormat);
+
+  /// Transforms JS date object to string according to date format
+  ///
+  /// Returns formatted string
   external static String formatDate(JsObject dateObj, String dateFormat);
 }
 
 @JS()
 @anonymous
-class FlatPickrJs {
+class FlatpickrJs {
   /// The text input element associated with flatpickr.
   external HtmlElement get input;
+
   /// Self-explanatory. This is the div.flatpickr-calendar element.
   external HtmlElement get calendarContainer;
+
   /// The “left arrow” element responsible for decrementing the current month.
   external HtmlElement get prevMonthNav;
+
   /// The “right arrow” element responsible for incrementing the current month.
   external HtmlElement get nextMonthNav;
+
   /// The span holding the current month’s name.
   external HtmlElement get currentMonthElement;
+
   /// The input holding the current year.
   external HtmlElement get currentYearElement;
+
   /// The container for all the day elements.
   external HtmlElement get days;
+
   /// The array of selected dates (Date objects).
   external List get selectedDates;
+
   /// The year currently displayed on the calendar.
   external int get currentYear;
+
   /// The zero-indexed month number (0-11) currently displayed on the calendar.
   external int get currentMonth;
+
   /// The configuration object (defaults + user-specified options).
   external FpConfigJs get config;
+
   /// Changes the current month
   external void changeMonth(int monthNum, [bool isOffset = true]);
+
   /// Resets the selected dates (if any) and clears the input.
   external void clear();
+
   /// Resets the selected dates (if any) and clears the input.
   external void close();
+
   /// Destroys the flatpickr instance, cleans up - removes event listeners,
   /// restores inputs, etc.
   external void destroy();
+
   /// Returns a string representation of dateObj,  formatted as per formatStr
   external String formatDate(JsObject dateObj, String formatStr);
+
   /// Sets the calendar view to the year and month of date, which can be a date
   /// string, a Date, or nothing.
+  ///
   /// If date is undefined, the view is set to the latest selected date,
   /// the minDate, or today’s date
   external void jumpToDate(date);
+
   /// Shows/opens the calendar.
   external void open();
+
   /// Parses a date string or a timestamp, and returns a Date.
   external JsObject parseDate(String dateStr, [String dateFormat]);
+
   /// Redraws the calendar. Shouldn’t be necessary in most cases.
   external void redraw();
+
   /// Sets a config option optionto value, redrawing the calendar and updating
   /// the current view, if necessary.
   external void set(String option, value);
+
   /// Sets the current selected date(s) todate, which can be a date string, a Date,
   /// or anArray of the Dates.
   ///
   ///Optionally, pass true as the second argument to force any onChange events
   /// to fire. And if you’re passing a date string with a format other than your
   /// dateFormat, provide a dateStrFormat e.g. "m/d/Y".
-  external void setDate(date, [bool triggerChange = false, String dateStrFormat]);
+  external void setDate(date,
+      [bool triggerChange = false, String dateStrFormat]);
+
   /// Shows/opens the calendar if its closed, hides/closes it otherwise.
   external void toggle();
 }
 
-/// Flatpickr event handler type
-typedef OnPickrJsEvent(List<JsObject> selectedDates, String dateStr, FlatPickrJs instance, e);
+/// Type for flatpickr event handler
+typedef OnPickrJsEvent(
+    List<JsObject> selectedDates, String dateStr, FlatpickrJs instance, e);
 
+/// FlatpickrJS configuration options
 @JS()
 @anonymous
 class FpConfigJs {
-
   /// Exactly the same as [dateFormat], but for the [altInput] field
   ///
   /// Default: `"F j, Y"`
@@ -131,11 +167,11 @@ class FpConfigJs {
   external set clickOpens(bool v);
 
   /// A string of characters which are used to define how the date will be displayed in the input box.
-  /// 
+  ///
   /// # The supported characters:
-  /// 
+  ///
   /// ## Date Formatting Tokens:
-  /// 
+  ///
   ///     |   | Description                                          | Example                  |
   ///     | - | -----------------------------------------------------| ------------------------ |
   ///     | d | Day of the month, 2 digits with leading zeros        | 01 to 31                 |
@@ -170,7 +206,7 @@ class FpConfigJs {
   ///     | Z | ISO Date format                                      | 2017-03-04T01:23:43.000Z |
   ///
   /// ## Time Formatting Tokens:
-  /// 
+  ///
   ///     |   | Description                                          | Example                  |
   ///     | - | -----------------------------------------------------| ------------------------ |
   ///     | H | Hours (24 hours)	                                   | 00 to 23                 |
@@ -214,13 +250,13 @@ class FpConfigJs {
   /// Dates unavailable for selection.
   ///
   /// There are multiple methods of doing so.
-  /// 
+  ///
   /// ## Disabling certain dates:
-  /// 
+  ///
   ///     disable: ["2025-01-30", "2025-02-21", "2025-03-08", new Date(2025, 4, 9) ]
   ///
   /// ## Disabling date ranges:
-  /// 
+  ///
   ///     disable: [
   ///       {
   ///         from: "2025-04-01",
@@ -233,7 +269,7 @@ class FpConfigJs {
   ///     ]
   ///
   /// ## Disabling dates by function:
-  /// 
+  ///
   ///     disable: [
   ///       function(date) {
   ///         // return true to disable
@@ -277,7 +313,7 @@ class FpConfigJs {
   external set enableSeconds(bool v);
 
   /// Allows using a custom date formatting function instead of the built-in.
-  /// 
+  ///
   /// Handling for date formats using dateFormat, altFormat, etc.
   ///
   /// Default: `null`
@@ -297,10 +333,10 @@ class FpConfigJs {
   external set inline(bool v);
 
   /// Locale string
-  /// 
+  ///
   /// The locale js-file must be loaded
   /// More info: https://chmln.github.io/flatpickr/localization/
-  /// 
+  ///
   /// Default: `en`
   external String get locale;
   external set locale(String v);
@@ -310,7 +346,7 @@ class FpConfigJs {
   /// Default: `null`
   external dynamic /*String|Date*/ get maxDate;
   external set maxDate(dynamic v);
-  
+
   /// The minimum date that a user can start picking from (inclusive).
   ///
   /// Default: `null`
@@ -336,7 +372,7 @@ class FpConfigJs {
   external set nextArrow(String v);
 
   /// Hides the day selection in calendar.
-  /// 
+  ///
   /// Use it along with enableTime to create a time picker.
   ///
   /// Default: `false`
@@ -344,7 +380,7 @@ class FpConfigJs {
   external set noCalendar(bool v);
 
   /// Function(s) to trigger on every date selection
-  /// 
+  ///
   /// Description: https://chmln.github.io/flatpickr/events/#onchange
   ///
   /// Default: `null`
@@ -352,7 +388,7 @@ class FpConfigJs {
   external set onChange(List<OnPickrJsEvent> v);
 
   /// Function(s) to trigger on every time the calendar is closed.
-  /// 
+  ///
   /// Description: https://chmln.github.io/flatpickr/events/#onclose
   ///
   /// Default: `null`
@@ -360,7 +396,7 @@ class FpConfigJs {
   external set onClose(List<OnPickrJsEvent> v);
 
   /// Function(s) to trigger on every time the calendar is opened.
-  /// 
+  ///
   /// Description: https://chmln.github.io/flatpickr/events/#onopen
   ///
   /// Default: `null`
@@ -368,7 +404,7 @@ class FpConfigJs {
   external set onOpen(List<OnPickrJsEvent> v);
 
   /// Function to trigger when the calendar is ready.
-  /// 
+  ///
   /// Description: https://chmln.github.io/flatpickr/events/#onready
   ///
   /// Default: `null`
@@ -378,7 +414,7 @@ class FpConfigJs {
   /// Function that expects a date string and must return a Date object
   ///
   /// Default: `null`
-  external /*Date*/ Function/*(String dateString)*/ get parseDate;
+  external /*Date*/ Function /*(String dateString)*/ get parseDate;
   external set parseDate(Function v);
 
   /// HTML for the left arrow icon.
@@ -394,7 +430,7 @@ class FpConfigJs {
   external set shorthandCurrentMonth(bool v);
 
   /// Position the calendar inside the wrapper and next to the input element.
-  /// 
+  ///
   /// Leave `false` unless you know what you're doing.
   ///
   /// Default: `false`
@@ -415,62 +451,61 @@ class FpConfigJs {
 
   /// This permits additional markup, as well as custom elements to trigger the
   /// state of the calendar.
-  /// 
+  ///
   /// flatpickr can parse an input group of textboxes and buttons, common in Bootstrap and other frameworks.
-  /// 
+  ///
   ///     <div class=flatpickr>
   ///       <input type="text" placeholder="Select Date.." data-input> <!-- input is mandatory -->
-  ///       
+  ///
   ///       <a class="input-button" title="toggle" data-toggle>
   ///         <i class="icon-calendar"></i>
   ///       </a>
-  ///       
+  ///
   ///       <a class="input-button" title="clear" data-clear>
   ///         <i class="icon-close"></i>
   ///       </a>
   ///     </div>
-  /// 
+  ///
   /// Default: `false`
   external bool get wrap;
   external set wrap(bool v);
 
-  external factory FpConfigJs({
-    String altFormat = 'F j, Y',
-    bool altInput = false,
-    String altInputClass = '',
-    bool allowInput = false,
-    HtmlElement appendTo,
-    String ariaDateFormat = 'F j, Y',
-    bool clickOpens = true,
-    String dateFormat = 'Y-m-d',
-    dynamic defaultDate,
-    int defaultHour = 12,
-    int defaultMinute = 0,
-    List disable = const [],
-    bool disableMobile = false,
-    List enable = const [],
-    bool enableTime = false,
-    bool enableSeconds = false,
-    Function formatDate,
-    int hourIncrement = 1,
-    bool inline = false,
-    String locale = 'en',
-    dynamic maxDate,
-    dynamic minDate,
-    int minuteIncrement = 5,
-    String mode = 'single',
-    String nextArrow = '>',
-    bool noCalendar = false,
-    dynamic onChange,
-    dynamic onClose,
-    dynamic onOpen,
-    dynamic onReady,
-    Function parseDate,
-    String prevArrow = '<',
-    bool shorthandCurrentMonth = false,
-    bool static = false,
-    bool time_24hr = false,
-    bool weekNumbers = false,
-    bool wrap = false
-  });
+  external factory FpConfigJs(
+      {String altFormat = 'F j, Y',
+      bool altInput = false,
+      String altInputClass = '',
+      bool allowInput = false,
+      HtmlElement appendTo,
+      String ariaDateFormat = 'F j, Y',
+      bool clickOpens = true,
+      String dateFormat = 'Y-m-d',
+      dynamic defaultDate,
+      int defaultHour = 12,
+      int defaultMinute = 0,
+      List disable = const [],
+      bool disableMobile = false,
+      List enable = const [],
+      bool enableTime = false,
+      bool enableSeconds = false,
+      Function formatDate,
+      int hourIncrement = 1,
+      bool inline = false,
+      String locale = 'en',
+      dynamic maxDate,
+      dynamic minDate,
+      int minuteIncrement = 5,
+      String mode = 'single',
+      String nextArrow = '>',
+      bool noCalendar = false,
+      dynamic onChange,
+      dynamic onClose,
+      dynamic onOpen,
+      dynamic onReady,
+      Function parseDate,
+      String prevArrow = '<',
+      bool shorthandCurrentMonth = false,
+      bool static = false,
+      bool time_24hr = false,
+      bool weekNumbers = false,
+      bool wrap = false});
 }

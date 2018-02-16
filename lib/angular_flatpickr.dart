@@ -1,8 +1,6 @@
-/// Support for doing something awesome.
+/// Support for date/time picker based on flatpickr
 ///
-/// More dartdocs go here.
+/// Definition for angular directives which add flatpickr functionality to inputs
 library angular_flatpickr;
 
 export 'src/angular_flatpickr.dart';
-
-// TODO: Export any libraries intended for clients of this package.
