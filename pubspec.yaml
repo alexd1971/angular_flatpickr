@@ -16,8 +16,6 @@ dev_dependencies:
   angular_test: ^1.0.0
   pageloader: ^2.2.6
   test: ^0.12.0
-  browser: ^0.10.0
-  dart_to_js_script_rewriter: ^1.0.1
 
 transformers:
   - angular:
@@ -25,4 +23,3 @@ transformers:
         - test/**_test.dart
   - test/pub_serve:
       $include: test/**_test.dart
-  - dart_to_js_script_rewriter
