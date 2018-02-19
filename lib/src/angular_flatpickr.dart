@@ -270,54 +270,29 @@ class Flatpickr implements OnInit, OnDestroy {
   ///
   /// ## Date Formatting Tokens:
   ///
-  ///     |   | Description                                          | Example                  |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | d | Day of the month, 2 digits with leading zeros        | 01 to 31                 |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | D | A textual representation of a day	Mon through        | Sun                      |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | l | A full textual representation of the day of the week | Sunday - Saturday        |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | j | Day of the month without leading zeros               | 1 to 31                  |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | J | Day of the month without leading zeros and ordinal   | 1st, 2nd, to 31st        |
-  ///     |   | suffix                                               |                          |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | w | Numeric representation of the day of the week        | 0 (for Sunday) -         |
-  ///     |   |                                                      | 6 (for Saturday)         |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | F | A full textual representation of a month             | January - December       |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | m | Numeric representation of a month, with leading zero | 01 - 12                  |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | n | Numeric representation of a month, without leading   | 1 - 12                   |
-  ///     |   | zeros                                                |                          |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | M | A short textual representation of a month            | Jan - Dec                |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | U | The number of seconds since the Unix Epoch           | 1413704993               |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | y | A two digit representation of a year                 | 99 or 03                 |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | Y | A full numeric representation of a year, 4 digits    | 1999 or 2003             |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | Z | ISO Date format                                      | 2017-03-04T01:23:43.000Z |
+  ///     d -- Day of the month, 2 digits with leading zeros (01 to 31)
+  ///     D -- A textual representation of a day	(Mon through Sun)
+  ///     l -- A full textual representation of the day of the week (Sunday - Saturday)
+  ///     j -- Day of the month without leading zeros (1 to 31)
+  ///     J -- Day of the month without leading zeros and ordinal suffix (1st, 2nd, to 31st)
+  ///     w -- Numeric representation of the day of the week (0 for Sunday - 6 for Saturday)
+  ///     F -- A full textual representation of a month (January - December)
+  ///     m -- Numeric representation of a month, with leading zero (01 - 12)
+  ///     n -- Numeric representation of a month, without leading zeros (1 - 12)
+  ///     M -- A short textual representation of a month (Jan - Dec)
+  ///     U -- The number of seconds since the Unix Epoch (e.g. 1413704993)
+  ///     y -- A two digit representation of a year (e.g. 99 or 03)
+  ///     Y -- A full numeric representation of a year, 4 digits (e.g. 1999 or 2003)
+  ///     Z -- ISO Date format (e.g. 2017-03-04T01:23:43.000Z)
   ///
   /// ## Time Formatting Tokens:
   ///
-  ///     |   | Description                                          | Example                  |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | H | Hours (24 hours)	                                   | 00 to 23                 |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | h | Hours                                                | 1 to 12                  |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | i | Minutes                                              | 00 to 59                 |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | S | Seconds, 2 digits                                    | 00 to 59                 |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | s | Seconds                                              | 0, 1 to 59               |
-  ///     | - | -----------------------------------------------------| ------------------------ |
-  ///     | K | AM/PM                                                | AM or PM                 |
+  ///     H -- Hours (24 hours:	00 to 23)
+  ///     h -- Hours (1 to 12)
+  ///     i -- Minutes (00 to 59)
+  ///     S -- Seconds, 2 digits (00 to 59)
+  ///     s -- Seconds (0, 1 to 59)
+  ///     K -- AM/PM (AM or PM)
   ///
   /// Default: `"Y-m-d"`
   String get dateFormat => _options.dateFormat;
@@ -592,7 +567,7 @@ class Flatpickr implements OnInit, OnDestroy {
     var jsValue;
     if (v is DateTime) {
       jsValue = _dateTime2JsDate(v);
-    } else if (v is String) {
+    } else if (v is String || v == null) {
       jsValue = v;
     } else {
       throw new ArgumentError(
@@ -617,7 +592,7 @@ class Flatpickr implements OnInit, OnDestroy {
     var jsValue;
     if (v is DateTime) {
       jsValue = _dateTime2JsDate(v);
-    } else if (v is String) {
+    } else if (v is String || v == null) {
       jsValue = v;
     } else {
       throw new ArgumentError(
@@ -944,8 +919,16 @@ class Flatpickr implements OnInit, OnDestroy {
     _initialConfig.onChange = [
       allowInterop(
           (List jsSelectedDates, String dateStr, FlatpickrJs instance, e) {
+        dynamic value;
+        if (mode == 'single') {
+          if (selectedDates.length == 1) {
+            value = selectedDates.first;
+          } 
+        } else {
+          value = selectedDates;
+        }
         _onChange.add(new FlatpickrChangeEvent(
-            this, mode == 'single' ? selectedDates.first : selectedDates));
+            this, value));
       })
     ];
     _initialConfig.onClose = [

@@ -1,6 +1,6 @@
 name: angular_flatpickr
 description: AngularDart port of flatpickr (javascript date/time picker).
-version: 0.0.1+1
+version: 0.0.2
 homepage: https://github.com/alexd1971/angular_flatpickr
 author: Aleksey Danilevskiy <alexey.danilevsky@gmail.com>
 
